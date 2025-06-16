@@ -17,6 +17,11 @@ pipeline{
                 sh 'mvn test'
             }
         }
+stage ('maven package') {
+            steps {
+                sh 'mvn package'
+            }
+        }
      
 
 
@@ -25,8 +30,8 @@ pipeline{
                 script{
                     withDockerRegistry(credentialsId: 'docker', toolName: 'docker') {
                         sh "docker build -t petshop ."
-                        sh "docker tag petshop anji103/petshop:latest"
-                        sh "docker push anji103/petshop:latest"
+                        sh "docker tag petshop venkat1009/petshop:latest"
+                        sh "docker push venkat1009/petshop:latest"
                    }
                 }
             }
